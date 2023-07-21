@@ -1,0 +1,74 @@
+#include "sort.h"
+
+
+/**
+ * swap - swaps two elements of an array
+ * @a: the first element
+ * @b: the second element
+ */
+
+void swap(int *a, int *b)
+{
+	int temp = *a;
+
+	*a = *b;
+	*b = temp;
+}
+
+/**
+ * partition - a function to partition the array and return the pivot index
+ * @arr: a pointer to the first element of the array
+ * @low: the stating index of the array
+ * @high: the ending index of the array
+ * @size: the size of the array
+ * Return: the pivot index
+ */
+
+int partition(int *arr, size_t size, int low, int high)
+{
+	int pivot = arr[high];
+	int i = low - 1, j;
+
+	for (j = low; j < high; j++)
+	{
+		if (arr[j] <= pivot)
+		{
+			i++;
+			swap(&arr[i], &arr[j]);
+			/*print_array(arr, size);*/
+		}
+	}
+
+	swap(&arr[i + 1], &arr[high]);
+	print_array(arr, size);
+	return (i + 1);
+}
+
+/**
+ * quickSort -Implement the quicksort algorithm through recursion.
+ * @arr: a pointer to the array
+ * @size: the size of the array
+ * @low: the stating index of the array
+ * @high: the ending index of the array
+ */
+
+void quickSort(int *arr, size_t size, int low, int high)
+{
+	int pivotIndex;
+
+	if (low < high)
+	{
+		pivotIndex = partition(arr, size, low, high);
+		quickSort(arr, size, low, pivotIndex - 1);
+		quickSort(arr, size, pivotIndex + 1, high);
+	}
+}
+/**
+ * quick_sort -Implement the quicksort algorithm through recursion.
+ * @arr: a pointer to the array
+ * @size: the size of the array
+ */
+void quick_sort(int *array, size_t size)
+{
+	quickSort(array, size, 0, size - 1);
+}
