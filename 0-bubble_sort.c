@@ -4,7 +4,7 @@
  * bubble_sort - a function that sorts an array of integers in ascending
  * order using the Bubble sort algorithm
  * @array: a pointer to an array
- * @the size of the array
+ * @size: size of the array
  * Return: nothing
  */
 
